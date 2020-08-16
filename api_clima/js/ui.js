@@ -122,7 +122,11 @@ export class Interfaz_usuario{
             
             case "wind":
                 return "<img src='img/descarga.png' class='img-fluid' Width='30px'/>" 
-                break;    
+                break;
+                
+            case "clear-day":
+                return "<img src='img/clear_day.jpg' class='img-fluid' Width='30px'/>" 
+                break;      
             
             default:
                 return "<img src='img/snow.jpg' class='img-fluid' Width='30px'/>" 
