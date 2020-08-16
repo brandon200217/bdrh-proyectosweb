@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clima </title>
+     
+    <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1 class="text-center my-5">Clima</h1>
+    <div class="container contenido-principal">
+        
+        
+        <div class="card-header text-center titulo-sky"><h3>Dark Sky</h3></div>
+        
+        <div class="row justify-content-center">
+
+        <div class="dataTables_length" id="example_length">
+            <label>
+                <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;">mostrar 
+                    </font>
+                </font>
+                
+                <select name="example_length" aria-controls="example" id="selected">
+                    <option value="0-5">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">5</font>
+                        </font>
+                    </option>
+                    
+                    <option value="0-10">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">10</font>
+                        </font>
+                    </option>
+                    
+                    <option value="0-20">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">20</font>
+                        </font>
+                    </option>
+
+                    <option value="0-30">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">30</font>
+                        </font>
+                    </option>
+
+                    <option value="0-40">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">40</font>
+                        </font>
+                    </option>
+
+                    <option value="0-49">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">49</font>
+                        </font>
+                    </option>
+                
+                </select>
+
+            </label>
+
+        
+        
+        </div>
+            
+            <form class="col-10 col-md-8" id="formulario">
+                
+                <div class="formulario-cotizar row">
+                       
+                    <div class="form-group col-12 col-md-3">
+                        <input type="number" id="longitud" class="form-control" min="-180.000" max="90.000" placeholder="Escoja la longitud">
+                    </div>
+                        
+                    <div class="form-group col-12 col-md-3">
+                        <input type="number" id="latitud" class="form-control" min="-180.000" max="90.000" placeholder="Escoja la latitud">
+                    </div>
+                        
+                    <div class="form-group col-12 col-md-3">
+                        <select id="exclude" class="form-control">
+                            <option value="" disabled selected>Exclude </option>
+                            <option value="currently">currently </option>
+                            <option value="minutely">minutely </option>
+                            <option value="daily">daily </option>
+                            <option value="alerts">alerts </option>
+                            <option value="flags">flags </option>
+                        </select>
+                    </div>
+                        
+                    <div class="form-group col-12 col-md-3">
+                        <input type="submit" class="btn btn-success" value="Cotizar" id="btn">
+                    </div>
+                
+                </div><!--.formulario-cotizar-->
+
+                <div class="panel-resultados row justify-content-center mt-5">
+                    <div class="mensajes col-12"></div>
+                    <div id="resultado" class="col-12"></div>
+                    <div id="paginador" class="col-12"></div>
+                        
+                    </div>
+                    
+
+                </div><!--panel-resultados-->
+            </form>
+        </div> 
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+      
+</body>
+</html>
+
