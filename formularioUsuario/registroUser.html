@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-------------------------------------------------------------------
+	vinculo css
+	---------------------------------------------------------------->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/plugins/select2.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+  	crossorigin="anonymous">
+  	<link rel="stylesheet" href="css/style.css">
+
+
+	
+	<!-------------------------------------------------------------------
+	vinculo js
+	---------------------------------------------------------------->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="js/plugins/select2.full.min.js"></script>
+  	<script src="js/plugins/sweetalert2.all.js"></script>
+  	<script src="js/plugins/jquery.inputmask.bundle.min.js"></script>
+  
+	
+
+	<title></title>
+</head>
+<body>
+
+
+
+
+<div class="container col-12 col-md-8">
+
+	<div class="card" id="coloreado">
+
+        <div class="color card-body" >
+
+        	<div id="dv_Contenedor_Mantenimiento">
+        
+	
+				<div class="card card-primary card-outline">
+
+					<div class="card-header">
+						
+						<h5 class="m-0 text-uppercase text-secondary">
+								
+							<strong>Formulario crud</strong>
+
+						</h5>
+
+					</div>
+				
+
+					<div class="card-body">
+
+						<form>
+								<div class="form-group">
+									<label for="inputName" class="control-label">Nombre Completo</label>
+									
+									<div id="nombre_respuesta">
+										
+										<input type="text" class="form-control" id="inputName" name="" >
+									
+									<div id="err_email" class="err_alert">
+										
+									</div>
+								
+								</div>
+
+
+								<div class="form-group">
+									
+									<label for="exampleInputEmail1" class="control-label">Email:</label>
+									
+									<div id="email_respuesta">
+										<input type="email" class="form-control"  id="inputEmail" name="" >
+									
+									</div>
+								
+								<div>	
+									
+
+
+								<div class="form-group">	
+									
+									<label for="exampleInputPassword" class="control-label">Password:</label>
+									
+									<div id="password_respuesta">
+										<input type="password" class="form-control" id="inputPassword" name="" >
+									
+									</div>
+								
+								<div>	
+								
+
+								<div class="form-group">	
+									
+									<label for="exampleInputFecha" class="control-label">Fecha:</label>
+									
+									<div>	
+										
+										<input type="date" class="form-control" id="inputFecha" name="">
+									
+									</div><br>	
+								
+								<div>
+
+								<div class="input-group">
+									
+								
+									<select class="form-control select2" id="inputSexo">
+										<option>Escoge el sexo</option>
+										<option>Mujer</option>
+										<option>Hombre</option>
+									</select>	
+								
+								</div><br>
+
+								<div class="input-group">
+									
+									<label for="inputPais" class="control-label"></label>
+									
+									<select class="form-control select2" id="inputPais">
+										<option>Seleccione tu pais</option>
+									</select>
+							
+
+								</div>
+
+								<div class="form-group">
+
+									<label for="imputMovil" class="control-label">Telefono Movil</label>
+
+									<div class="input-group">
+										
+										<div class="input-group-prepend">
+											<span class="p-2 bg-primary rounded-left dialCode"></span>
+										</div>
+
+										<input type="text" class="form-control" id="inputMovil" data-inputmask="'mask':'(999) 999-9999'" data-mask>
+									
+									</div>
+					
+								</div>	
+
+								<div class="form-group">
+									
+									<div class="col-sm-offset-2">
+										
+										<input type="button"class="btn btn-dark enviar" value="enviar">
+									
+									</div>
+								
+								<div>	
+						</form>
+
+					</div>		
+				
+				</div>	
+			</div>
+
+		</div>
+	
+	</div>
+
+</div>		
+
+
+
+<script src="js/registro_usuario.js"></script>
+
+
+</body>
+</html>
