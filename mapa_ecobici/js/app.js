@@ -1,7 +1,12 @@
-import {interfazUsuario} from "./ui.js"
+import {UI} from "./ui.js"
+import {Api} from "./api.js"
 
-const ui = new interfazUsuario();
+const apiBici = new Api();
+
+const ui = new UI(apiBici);
+
 
 document.addEventListener("DOMContentLoaded",(e)=>{
-    ui.inicializarMapa() 
+    
+    ui.mostrarEcoBici()
 })
