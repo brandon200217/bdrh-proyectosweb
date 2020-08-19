@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#">
-                Establecimientos <b>Gasolina</b>
+                Estaciones <b>Eco bici</b>
             </a>
             <form id="buscar" class=" my-2 my-lg-0">
                 <input class="form-control" type="text" placeholder="Buscar">
@@ -20,7 +20,7 @@
     </nav>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" id="map">
                     <div id="mapa"></div>
             </div>
         </div>
@@ -32,7 +32,9 @@
     </style>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script type="module" src="js/app.js"></script>
+
     
     
+    respuestaJson.data.stations
 </body>
 </html>
