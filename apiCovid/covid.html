@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Graficas covid </title>
+     
+    <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-center my-5">Graficas covid</h1>
+    <div class="container contenido-principal">
+
+        <div class="row justify-content-center">
+            <form class="col-10 col-md-8" id="formulario">
+                <div class="formulario-cotizar row">
+                        <div class="form-group col-12 col-md-4">
+                            <select id="busqueda" name="nacion" class="paises form-control">
+                                <option value="" disabled selected>Elige Una opcion</option>
+                                <option value="global">Datos Globales</option>
+                                <option value="country">Datos pais</option>
+                                <option value="summary">Datos Paises</option>
+                            </select>
+                        </div>    
+                        <div class="form-group col-12 col-md-4">
+                            <select id="pais"  class="paises form-control">
+                                <option value="" disabled selected>Escoja un Pais</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-md-4">
+                            <input type="submit" id="bt" class="btn bg-purple btn-boopstrap" value="Mostrar Graficas">
+                        </div>
+                </div><!--.formulario-cotizar-->
+
+                <div class="panel-resultados row justify-content-center mt-5">
+                    <div class="contenido-spinner">
+                        <div class="spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>    
+                    </div>
+                    <div class="mensajes col-12"></div>
+                    <div id="canvasContainer" class="col-12">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div><!--panel-resultados-->
+            </form>
+        </div> 
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
