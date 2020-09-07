@@ -6,7 +6,7 @@ export class ui{
     constructor(){}
 
     selectPaises(jsonPaises){
-        console.log(jsonPaises);
+        //console.log(jsonPaises);
                 
         for(const [key,value] of Object.entries(jsonPaises)){
             let option = document.createElement("option");     
@@ -14,8 +14,6 @@ export class ui{
            
 
             option.appendChild(document.createTextNode(value.name))
-            console.log(option);
-            console.log(select);
             select.appendChild(option);
         }
 

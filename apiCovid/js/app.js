@@ -9,18 +9,26 @@ import {ui} from "./ui.js";
 const apiPais = new apiPaises("https://api.printful.com/countries");  
 const interfazUsuario = new ui();
 
+
+let tipoBusqueda = document.querySelector("#busqueda");
+let tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value;  
+
+let pais = document.querySelector("#pais");
+let paisValor = pais.options[pais.selectedIndex].value;
+
 document.addEventListener('DOMContentLoaded',paises());
-    
+  
 function paises(){
 
-    let tipoBusqueda = document.querySelector("#busqueda");
-    let tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value;
-
     apiPais.paisesMundo().then((valores)=>{
-                    
+        
         interfazUsuario.selectPaises(valores)
                 
     })
+    if(pais.value == ""){
+        pais.disabled = true;
+    }
+
 }
 
 
@@ -30,10 +38,10 @@ elijeOpcion.addEventListener("change",(e)=>{
     let valor = elijeOpcion.options[elijeOpcion.selectedIndex].value; 
 
     if(valor == "global" || valor == "summary"){
-        document.querySelector("#pais").disabled = true;
+        pais.disabled = true;
     }
     else{
-        document.querySelector("#pais").disabled = false;
+        pais.disabled = false;
     }
 
 })
@@ -42,11 +50,27 @@ elijeOpcion.addEventListener("change",(e)=>{
 
 document.querySelector("#bt").addEventListener("click", (e) => {
     e.preventDefault();
+
+    if(tipoBusquedaValor != "" && paisValor != ""){
+
+        apiPais.datosCovidPais(`https://api.covid19api.com/dayone/country/${paisValor}`).then(()=>{
+            
+
+
+        })
+
+    }else if(tipoBusquedaValor != ""){
+
+
+
+    }else{
+
+        //debe seleccionar alguno dato
+    }
+
     
-
+    
 })
-
-
 
 /*let ctx= document.querySelector("#myChart").getContext("2d");
 let myChart= new Chart(ctx,{

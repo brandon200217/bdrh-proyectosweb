@@ -13,4 +13,9 @@ export class apiPaises{
         jsonPaises = jsonPaises.result;
         return jsonPaises;
     }
+
+    async datosCovidPais(endpointPais){
+        
+
+    }
 }
