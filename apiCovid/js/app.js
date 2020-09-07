@@ -5,16 +5,19 @@
 
 import {apiPaises} from "./api.js";
 import {ui} from "./ui.js";
+import {apiCovid} from "./apiCovid.js";
 
 const apiPais = new apiPaises("https://api.printful.com/countries");  
 const interfazUsuario = new ui();
-
+const apiCovid19 = new apiCovid();  
 
 let tipoBusqueda = document.querySelector("#busqueda");
-let tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value;  
+let tipoBusquedaValor;
+
 
 let pais = document.querySelector("#pais");
-let paisValor = pais.options[pais.selectedIndex].value;
+let paisValor;
+
 
 document.addEventListener('DOMContentLoaded',paises());
   
@@ -32,12 +35,12 @@ function paises(){
 }
 
 
-let elijeOpcion = document.querySelector("#busqueda");
-elijeOpcion.addEventListener("change",(e)=>{
-    
-    let valor = elijeOpcion.options[elijeOpcion.selectedIndex].value; 
 
-    if(valor == "global" || valor == "summary"){
+tipoBusqueda.addEventListener("change",(e)=>{
+    
+    tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value; 
+
+    if(tipoBusquedaValor == "global" || tipoBusquedaValor == "summary"){
         pais.disabled = true;
     }
     else{
@@ -50,25 +53,43 @@ elijeOpcion.addEventListener("change",(e)=>{
 
 document.querySelector("#bt").addEventListener("click", (e) => {
     e.preventDefault();
+    
+    tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value; 
+    paisValor = pais.options[pais.selectedIndex].value;
 
-    if(tipoBusquedaValor != "" && paisValor != ""){
+    if(pais.disabled == false){    
+        if(tipoBusquedaValor != "" && paisValor != ""){
+            apiCovid19.datosCovidPais(`https://api.covid19api.com/dayone/country/${paisValor}`).then((covidPais)=>{
+                console.log(covidPais);
+            });
+        }
+    }
+    else if(tipoBusquedaValor != ""){
 
-        apiPais.datosCovidPais(`https://api.covid19api.com/dayone/country/${paisValor}`).then(()=>{
+        if(tipoBusquedaValor == "global" ){
+
+
+            apiCovid19.datosCovidGlobal(`https://api.covid19api.com/world/total`).then((CovidGlobal)=>{
+                console.log(CovidGlobal);
+            });
+        }
+        
+        else if(tipoBusquedaValor == "summary"){
+
+            apiCovid19.datosCovidPaises(`https://api.covid19api.com/summary`).then((covidPaises)=>{
+                console.log(covidPaises);
             
-
-
-        })
-
-    }else if(tipoBusquedaValor != ""){
-
-
-
-    }else{
-
-        //debe seleccionar alguno dato
+            });
+        
+        }else{
+            console.log("error valor");
+        }        
     }
 
-    
+    else{
+        console.log("error ");
+        //debe seleccionar alguno dato
+    }
     
 })
 

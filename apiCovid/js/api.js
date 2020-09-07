@@ -2,11 +2,11 @@ export class apiPaises{
 
     constructor(endopint){
         this.endopint = endopint;
-
+        this.jsonCovid;
+        this.jsonResultado; 
     }
 
     async paisesMundo(){
-        console.log("a");
         let listaPaises = await fetch(this.endopint);
 
         let jsonPaises = await listaPaises.json();
@@ -14,8 +14,4 @@ export class apiPaises{
         return jsonPaises;
     }
 
-    async datosCovidPais(endpointPais){
-        
-
-    }
 }
