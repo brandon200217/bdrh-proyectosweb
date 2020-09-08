@@ -41,12 +41,12 @@ tipoBusqueda.addEventListener("change",(e)=>{
     tipoBusquedaValor = tipoBusqueda.options[tipoBusqueda.selectedIndex].value; 
 
     if(tipoBusquedaValor == "global" || tipoBusquedaValor == "summary"){
-        pais.disabled = true;
+        
+        pais.disabled = true;       
     }
     else{
         pais.disabled = false;
     }
-
 })
 
 
@@ -60,7 +60,9 @@ document.querySelector("#bt").addEventListener("click", (e) => {
     if(pais.disabled == false){    
         if(tipoBusquedaValor != "" && paisValor != ""){
             apiCovid19.datosCovidPais(`https://api.covid19api.com/dayone/country/${paisValor}`).then((covidPais)=>{
-                console.log(covidPais);
+                
+ 
+                interfazUsuario.mostrarGraficosPaises(covidPais);
             });
         }
     }
@@ -70,14 +72,16 @@ document.querySelector("#bt").addEventListener("click", (e) => {
 
 
             apiCovid19.datosCovidGlobal(`https://api.covid19api.com/world/total`).then((CovidGlobal)=>{
-                console.log(CovidGlobal);
+
+                interfazUsuario.mostrarGraficasGlobal(CovidGlobal);
             });
         }
         
         else if(tipoBusquedaValor == "summary"){
 
             apiCovid19.datosCovidPaises(`https://api.covid19api.com/summary`).then((covidPaises)=>{
-                console.log(covidPaises);
+
+                interfazUsuario.mostrarGraficosPaises(covidPaises);
             
             });
         
@@ -93,15 +97,3 @@ document.querySelector("#bt").addEventListener("click", (e) => {
     
 })
 
-/*let ctx= document.querySelector("#myChart").getContext("2d");
-let myChart= new Chart(ctx,{
-
-    type:"bar",
-    data:{   
-        labels:['col1','col2','col3'],
-        datasets:[{
-            label:'datos covid',
-            data:[244,12,214]
-        }]
-    }    
-});*/

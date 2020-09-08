@@ -32,7 +32,7 @@ export class apiCovid{
         }
         
         catch(error){
-            console.log(endpointPais);
+            console.log(endpointPaises);
         }
     }
     async datosCovidGlobal(endpointGlobal){
@@ -46,7 +46,7 @@ export class apiCovid{
         }
         
         catch(error){
-            console.log(endpointPais);
+            console.log(endpointGlobal);
         }
 
     }
