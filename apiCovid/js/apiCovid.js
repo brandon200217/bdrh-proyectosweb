@@ -9,15 +9,19 @@ export class apiCovid{
         try{
 
             let covidPais = await fetch(endpointPais);
-            this.jsonCovid = await covidPais.json();
             
-            return this.jsonCovid;
+            if (covidPais.status >= 400 && response.status < 600) {
+                throw new Error("Bad response from server");
+                
+            }else{
 
-        
+                this.jsonCovid = await covidPais.json();
+                return this.jsonCovid;
+            }
         }
         
         catch(error){
-            console.log(endpointPais);
+           console.log(error);
         
         }
     }

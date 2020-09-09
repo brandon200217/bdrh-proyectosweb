@@ -91,8 +91,8 @@ document.querySelector("#bt").addEventListener("click", (e) => {
     }
 
     else{
-        console.log("error ");
-        //debe seleccionar alguno dato
+
+        interfazUsuario.mensajeError("Todos los campos son obligatiorios","alert bg-purple btn-boopstrap text-center");
     }
     
 })
