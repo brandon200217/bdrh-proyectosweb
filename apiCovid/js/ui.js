@@ -18,14 +18,22 @@ export class ui{
         }
     }
 
+    /*-----------------------------------------------------
+    mostrarGraficasGlobal
+    ------------------------------------------------------*/
     mostrarGraficasGlobal(datosCovid){
+        if (window.grafica) {
+            window.grafica.clear();
+            window.grafica.destroy();
+        
+        }
 
-        let myChart= new Chart(ctx,{
+        window.grafica = new Chart(ctx,{
             type:"bar",
             data:{   
                 labels:['Contagiados','Total de Muertes','Total de Recuperados'],
                 datasets:[{
-                    label:'datos covid',    
+                    label:'datos Globales covid',    
                     
                     backgroundColor:"#600a63",
                     hoverBackgroundColor:"#600a63",
@@ -46,8 +54,15 @@ export class ui{
         });
 
     }
-
-    mostrarGraficosPaises(datosCovid){
+    /*-----------------------------------------------------
+    mostrarGraficosPais
+    ------------------------------------------------------*/
+    mostrarGraficosPais(datosCovid){
+        
+        if (window.grafica) {
+            window.grafica.clear();
+            window.grafica.destroy();
+        }
         //Recovered,Active
         let datosCovidSemana=datosCovid.splice(-7);
         
@@ -59,7 +74,7 @@ export class ui{
             lineTension: 0,
             fill: false
         };
-        
+       
         let dataSegundo = {
             label: "Confirmados",
             backgroundColor:"#604cac",
@@ -88,11 +103,119 @@ export class ui{
             labels:[datosCovidSemana[0].Date,datosCovidSemana[1].Date,datosCovidSemana[2].Date,datosCovidSemana[3].Date,datosCovidSemana[4].Date,datosCovidSemana[5].Date,datosCovidSemana[6].Date],
             datasets: [dataUno, dataSegundo, dataTercero, dataCuarta]
         };
-        
 
-        let myChart= new Chart(ctx,{
+        window.grafica= new Chart(ctx,{
             type:"line",
             data:speedData
+ 
         });
-    }      
+    }
+    
+    /*-----------------------------------------------------
+    mostrarGraficosPaises
+    ------------------------------------------------------*/
+
+
+    mostrarGraficosPaises(datosCovid){
+        
+        if (window.grafica) {
+            window.grafica.clear();
+            window.grafica.destroy();
+        }
+        
+        let datosFiltrados = this.filtrarDatos(datosCovid);
+        let valoresGrafica = this.muertesCovid(datosFiltrados);
+        let contagios = this.ContagiosCovid(datosFiltrados);
+
+        
+        let muertes = valoresGrafica.slice(0,valoresGrafica.length/2);
+        let paises = valoresGrafica.slice(20);
+
+        
+        let datos = {
+            labels: paises,
+            datasets:[{
+                label:"muertos",
+                backgroundColor:"rgba(90, 11, 77, 0.75)",
+                data:muertes
+            },
+            {
+                label:"Contagiados",
+                backgroundColor:'rgba(33, 72, 179)',
+                data:contagios
+            }]
+        };
+
+        window.grafica = new Chart(ctx,{
+            type:"horizontalBar",
+            data:datos,
+            options:{
+                elements:{
+                    rectangle:{
+                        BorderWidth:1,
+                        borderColor:"rgba(90, 11, 77, 0.75)"
+                    }
+                },
+                responsive:true,
+                title:{
+                    display:true,
+                    text:"graficos paises",
+                }
+            }
+        });
+
+        /*window.grafica = new Chart(ctx,{
+            type:"horizontalBar",
+            data:{   
+                labels: paises,
+                datasets:[{
+                    label:'Muertes por Covid',    
+                    backgroundColor:"#600a63",
+                    hoverBackgroundColor:"#600a63",
+                    hoverBackgroundColor: [
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                    ],
+                    hoverBorderColor:[
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)'
+                    ],    
+                    hoverBorderWidth:3,
+                    data: muertes
+                }]
+            }    
+        });*/
+    }
+
+    filtrarDatos(datosCovid){
+       
+        let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
+        return resultado;
+    }
+    
+    muertesCovid(datosCovid){
+        
+        let arrayValores = [];
+        let arrayPaises = [];
+        
+        for(let i = 0; i < datosCovid.length ; i++){
+            arrayValores.push(datosCovid[i].TotalDeaths);
+            arrayPaises.push(datosCovid[i].Country);
+        }
+        let arrayGraficas = arrayValores.concat(arrayPaises);
+        return arrayGraficas;
+    }
+
+    ContagiosCovid(datosCovid){
+        
+        let arrayValores = [];    
+        for(let i = 0; i < datosCovid.length ; i++){
+            arrayValores.push(datosCovid[i].TotalConfirmed);
+        }
+        return arrayValores;
+    }
+
 }
+

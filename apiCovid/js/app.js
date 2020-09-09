@@ -62,7 +62,7 @@ document.querySelector("#bt").addEventListener("click", (e) => {
             apiCovid19.datosCovidPais(`https://api.covid19api.com/dayone/country/${paisValor}`).then((covidPais)=>{
                 
  
-                interfazUsuario.mostrarGraficosPaises(covidPais);
+                interfazUsuario.mostrarGraficosPais(covidPais);
             });
         }
     }
