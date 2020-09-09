@@ -114,6 +114,7 @@ export class ui{
                     data:speedData
                 });
             }else{
+                
                 if (window.grafica) {
                     window.grafica.clear();
                     window.grafica.destroy();
