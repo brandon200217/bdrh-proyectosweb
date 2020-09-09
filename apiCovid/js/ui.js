@@ -23,6 +23,7 @@ export class ui{
     ------------------------------------------------------*/
     mostrarGraficasGlobal(datosCovid){
         if (window.grafica) {
+            console.log("a");
             window.grafica.clear();
             window.grafica.destroy();
         
@@ -54,12 +55,16 @@ export class ui{
         });
 
     }
+
     /*-----------------------------------------------------
     mostrarGraficosPais
     ------------------------------------------------------*/
+
     mostrarGraficosPais(datosCovid){
         
         if (window.grafica) {
+            console.log("a");
+
             window.grafica.clear();
             window.grafica.destroy();
         }
@@ -104,6 +109,19 @@ export class ui{
             datasets: [dataUno, dataSegundo, dataTercero, dataCuarta]
         };
 
+        var chartOptions = {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+              }
+            }
+          };
+        
+
+
         window.grafica= new Chart(ctx,{
             type:"line",
             data:speedData
@@ -111,14 +129,15 @@ export class ui{
         });
     }
     
+
     /*-----------------------------------------------------
     mostrarGraficosPaises
     ------------------------------------------------------*/
 
-
     mostrarGraficosPaises(datosCovid){
         
         if (window.grafica) {
+            console.log("a");
             window.grafica.clear();
             window.grafica.destroy();
         }
@@ -193,6 +212,37 @@ export class ui{
        
         let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
         return resultado;
+
+        
+        
+        let muertes = valoresGrafica.slice(0,valoresGrafica.length/2);
+        let paises = valoresGrafica.slice(20);
+        
+        window.grafica = new Chart(ctx,{
+            type:"horizontalBar",
+            data:{   
+                labels:paises,
+                datasets:[{
+                    label:'Muertes por Covid',    
+                    backgroundColor:"#600a63",
+                    hoverBackgroundColor:"#600a63",
+                    hoverBackgroundColor: [
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                    ],
+                    hoverBorderColor:[
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)'
+                    ],    
+                    hoverBorderWidth:4,
+                    data: muertes
+                }]
+            }    
+        });
+
+      
     }
     
     muertesCovid(datosCovid){
@@ -208,6 +258,7 @@ export class ui{
         return arrayGraficas;
     }
 
+
     ContagiosCovid(datosCovid){
         
         let arrayValores = [];    
@@ -217,5 +268,11 @@ export class ui{
         return arrayValores;
     }
 
+
+    filtrarDatos(datosCovid){
+       
+        let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
+        return resultado;
+    }
 }
 
