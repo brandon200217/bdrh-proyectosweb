@@ -4,10 +4,10 @@ let ctx= document.querySelector("#myChart").getContext("2d");
 
 export class ui{
     constructor(){}
-
-    selectPaises(jsonPaises){
-        //console.log(jsonPaises);
-                
+    /*-----------------------------------------------------
+    selectPaises
+    ------------------------------------------------------*/
+    selectPaises(jsonPaises){         
         for(const [key,value] of Object.entries(jsonPaises)){
             let option = document.createElement("option");     
             option.value = value.name
@@ -17,7 +17,6 @@ export class ui{
             select.appendChild(option);
         }
     }
-
     /*-----------------------------------------------------
     mostrarGraficasGlobal
     ------------------------------------------------------*/
@@ -63,15 +62,13 @@ export class ui{
     mostrarGraficosPais(datosCovid){
         
         if (window.grafica) {
-            console.log("a");
-
             window.grafica.clear();
             window.grafica.destroy();
         }
         //Recovered,Active
         let datosCovidSemana=datosCovid.splice(-7);
         
-        let dataUno = {
+        let dataPrimero = {
             label: "muertes",
             backgroundColor:"#820d86",
             borderColor:"rgb(124, 27, 100)",
@@ -106,29 +103,14 @@ export class ui{
 
         let speedData = {
             labels:[datosCovidSemana[0].Date,datosCovidSemana[1].Date,datosCovidSemana[2].Date,datosCovidSemana[3].Date,datosCovidSemana[4].Date,datosCovidSemana[5].Date,datosCovidSemana[6].Date],
-            datasets: [dataUno, dataSegundo, dataTercero, dataCuarta]
+            datasets: [dataPrimero, dataSegundo, dataTercero, dataCuarta]
         };
-
-        var chartOptions = {
-            legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                boxWidth: 80,
-                fontColor: 'black'
-              }
-            }
-          };
-        
-
 
         window.grafica= new Chart(ctx,{
             type:"line",
             data:speedData
- 
         });
     }
-    
 
     /*-----------------------------------------------------
     mostrarGraficosPaises
@@ -137,7 +119,6 @@ export class ui{
     mostrarGraficosPaises(datosCovid){
         
         if (window.grafica) {
-            console.log("a");
             window.grafica.clear();
             window.grafica.destroy();
         }
@@ -182,66 +163,12 @@ export class ui{
                 }
             }
         });
-
-        /*window.grafica = new Chart(ctx,{
-            type:"horizontalBar",
-            data:{   
-                labels: paises,
-                datasets:[{
-                    label:'Muertes por Covid',    
-                    backgroundColor:"#600a63",
-                    hoverBackgroundColor:"#600a63",
-                    hoverBackgroundColor: [
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                    ],
-                    hoverBorderColor:[
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)'
-                    ],    
-                    hoverBorderWidth:3,
-                    data: muertes
-                }]
-            }    
-        });*/
     }
 
     filtrarDatos(datosCovid){
        
         let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
         return resultado;
-
-        
-        
-        let muertes = valoresGrafica.slice(0,valoresGrafica.length/2);
-        let paises = valoresGrafica.slice(20);
-        
-        window.grafica = new Chart(ctx,{
-            type:"horizontalBar",
-            data:{   
-                labels:paises,
-                datasets:[{
-                    label:'Muertes por Covid',    
-                    backgroundColor:"#600a63",
-                    hoverBackgroundColor:"#600a63",
-                    hoverBackgroundColor: [
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                    ],
-                    hoverBorderColor:[
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)',
-                        'rgba(90, 11, 77, 0.75)'
-                    ],    
-                    hoverBorderWidth:4,
-                    data: muertes
-                }]
-            }    
-        });
-
       
     }
     
@@ -268,11 +195,5 @@ export class ui{
         return arrayValores;
     }
 
-
-    filtrarDatos(datosCovid){
-       
-        let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
-        return resultado;
-    }
 }
 
