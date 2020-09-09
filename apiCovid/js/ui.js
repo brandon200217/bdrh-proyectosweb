@@ -19,13 +19,19 @@ export class ui{
     }
 
     mostrarGraficasGlobal(datosCovid){
+        if (window.grafica) {
+            console.log("a");
+            window.grafica.clear();
+            window.grafica.destroy();
+        
+        }
 
-        let myChart= new Chart(ctx,{
+        window.grafica = new Chart(ctx,{
             type:"bar",
             data:{   
                 labels:['Contagiados','Total de Muertes','Total de Recuperados'],
                 datasets:[{
-                    label:'datos covid',    
+                    label:'datos Globales covid',    
                     
                     backgroundColor:"#600a63",
                     hoverBackgroundColor:"#600a63",
@@ -47,7 +53,13 @@ export class ui{
 
     }
 
-    mostrarGraficosPaises(datosCovid){
+    mostrarGraficosPais(datosCovid){
+        
+        if (window.grafica) {
+            console.log("a");
+            window.grafica.clear();
+            window.grafica.destroy();
+        }
         //Recovered,Active
         let datosCovidSemana=datosCovid.splice(-7);
         
@@ -88,11 +100,84 @@ export class ui{
             labels:[datosCovidSemana[0].Date,datosCovidSemana[1].Date,datosCovidSemana[2].Date,datosCovidSemana[3].Date,datosCovidSemana[4].Date,datosCovidSemana[5].Date,datosCovidSemana[6].Date],
             datasets: [dataUno, dataSegundo, dataTercero, dataCuarta]
         };
+        var chartOptions = {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+              }
+            }
+          };
         
 
-        let myChart= new Chart(ctx,{
+        window.grafica= new Chart(ctx,{
             type:"line",
             data:speedData
+ 
         });
-    }      
+    }
+    
+    mostrarGraficosPaises(datosCovid){
+        
+        if (window.grafica) {
+            console.log("a");
+            window.grafica.clear();
+            window.grafica.destroy();
+        }
+        
+        let datosFiltrados = this.filtrarDatos(datosCovid);
+        let valoresGrafica = this.muertesCovid(datosFiltrados);
+        
+        
+        let muertes = valoresGrafica.slice(0,valoresGrafica.length/2);
+        let paises = valoresGrafica.slice(20);
+        
+        window.grafica = new Chart(ctx,{
+            type:"horizontalBar",
+            data:{   
+                labels:paises,
+                datasets:[{
+                    label:'Muertes por Covid',    
+                    backgroundColor:"#600a63",
+                    hoverBackgroundColor:"#600a63",
+                    hoverBackgroundColor: [
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                    ],
+                    hoverBorderColor:[
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)',
+                        'rgba(90, 11, 77, 0.75)'
+                    ],    
+                    hoverBorderWidth:4,
+                    data: muertes
+                }]
+            }    
+        });
+
+      
+    }
+    
+    muertesCovid(datosCovid){
+        
+        let arrayValores = [];
+        let arrayPaises = [];
+        
+        for(let i = 0; i < datosCovid.length ; i++){
+            arrayValores.push(datosCovid[i].TotalDeaths);
+            arrayPaises.push(datosCovid[i].Country);
+        }
+        let arrayGraficas = arrayValores.concat(arrayPaises);
+        return arrayGraficas;
+    }
+
+    filtrarDatos(datosCovid){
+       
+        let resultado = datosCovid.filter(covid => covid.TotalDeaths > 8000);
+        return resultado;
+    }
 }
+
